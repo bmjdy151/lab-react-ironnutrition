@@ -2,15 +2,12 @@ import React, { Component } from "react";
 
 export default class Search extends Component {
 
-handleChange = (e)  => {
-  this.props.filterList(e.target.value);
+handleChange = (e)  => { //function on this component
+  this.props.filterList(e.target.value); //trigger function on App.js
   return;
 }
 
 render(){
-  console.log("props on Search",this.props);
-  console.log("foods on Search",this.props.foods);
-  const firstList = this.props.foods;
   return(
     <div>
       <input type="text" className="input" onChange={this.handleChange} placeholder="Search..." />

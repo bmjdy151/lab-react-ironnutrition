@@ -4,7 +4,6 @@ export default class FoodBox extends Component {
 
 
 render(){
-  console.log("foods on FoodBox",this.props);
   const{name,image,calories,quantity} = this.props.food;
   return(
     <div className="box">

@@ -3,6 +3,7 @@ import './App.css';
 import 'bulma/css/bulma.css';
 import FoodBox from "./components/FoodBox";
 import Search from "./components/Search";
+import AddFood from "./components/AddFood";
 import foods from './foods.json'
 
 class App extends Component {
@@ -10,11 +11,10 @@ class App extends Component {
     super();
     this.state = { 
         foods: foods.slice(0,8),
-        filtered: []
+        toggleState: false
       };
     }
   filterList = searchQuery => {
-
     let currentList = [];
     let newList = [];
     if (searchQuery !== "") {
@@ -33,6 +33,16 @@ class App extends Component {
     });
   }
 
+  addFood = newFood => {
+    this.setState({ foods: this.state.foods.concat(newFood) });
+  }
+
+  toggleItem = () => {
+    console.log("app-before-State",this.state.toggleState);
+    this.setState({ toggleState: !this.state.toggleState});
+    console.log("app-after-State",this.state.toggleState);
+  };
+
   render() {
     console.log("state on App: ",this.state.foods);
     return (
@@ -41,6 +51,10 @@ class App extends Component {
         {this.state.foods.map( (food,i) =>(
           <FoodBox key={i} food={food}  index={i} />
         ))} 
+        <button onClick={this.toggleItem}>Add New Item</button>
+        {this.state.toggleState && (
+          <AddFood toggleState={this.state.toggleState} toggleItem={this.toggleItem} addFood={this.addFood} />
+        )}
       </div>
     );
   }
