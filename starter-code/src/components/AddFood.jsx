@@ -19,9 +19,7 @@ onChangeHandler = e => {
 
 submitHandler = e => {
   e.preventDefault();
-  console.log("component-before-state",this.props.toggleState);
-  this.props.toggleItem;
-  console.log("component-after-state",this.props.toggleState);
+  this.props.toggleItem();
   this.props.addFood(this.state);
 };
 

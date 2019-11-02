@@ -22,6 +22,32 @@
   font-size: large;
 }
 
+.app-container{
+  display: flex;
+  flex-flow:row nowrap;
+  justify-content: left;
+}
+
+.box{
+  width:50vw;
+}
+.media-left,.media-content,.media-right{
+  width:30%;
+}
+#todaysFood-container{
+  margin-left:10%;
+  justify-content: flex;
+  flex-flow:column nowrap;
+  justify-content: center;
+}
+#todaysFood-container h6{
+  font-size:26px;
+  font-weight: bold;
+}
+#todaysList li, #todaysFood-container p{
+  text-align: left;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

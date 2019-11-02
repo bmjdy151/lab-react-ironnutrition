@@ -2,6 +2,26 @@ import React, { Component } from "react";
 
 export default class FoodBox extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      calories: 0,
+      image: "",
+      quantity: 0
+    };
+  }
+
+  onChangeHandler = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value});
+  };
+  
+  onClickTodaysFood= (food) => {
+    const{name,image,calories} = food;
+    this.props.showItem(food,this.state.quantity);
+  };
+
 
 render(){
   const{name,image,calories,quantity} = this.props.food;
@@ -26,13 +46,17 @@ render(){
           <div className="field has-addons">
             <div className="control">
               <input
+                name="quantity"
                 className="input"
                 type="number" 
-                value={quantity}
+                defaultValue={quantity}
+                onChange={e => {
+                  this.onChangeHandler(e);
+                }}
               />
             </div>
             <div className="control">
-              <button className="button is-info">
+              <button id="addFood" onClick={ () => { this.onClickTodaysFood(this.props.food) }}  className="button is-info">
                 +
               </button>
             </div>
@@ -40,6 +64,13 @@ render(){
         </div>
       </article>
     </div>
+
     );
   }
 }
+
+
+
+  
+
+
