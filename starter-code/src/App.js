@@ -53,17 +53,21 @@ class App extends Component {
     if(newList.length !== 0){
       console.log("duplicate!")
       let updateTarget = document.getElementById(keyword);
-      let newQuantity = newList[0].quantity + quantity;
+      let newQuantity = parseInt(newList[0].quantity) + parseInt(quantity);
+      let unitSum = parseInt(newList[0].unitCal) * parseInt(quantity);
+      let newTotalCal = parseInt(newList[0].unitCal) * newQuantity;
       debugger;
-      var reformattedArray = newList.map(ele => ({ 
+      let reformattedArray = newList.map(ele => ({ 
         name:ele.name, 
         quantity: newQuantity, 
         unitCal:ele.unitCal,
-        totalCal:ele.unitCal * (ele.quantity+quantity) 
+        totalCal:newTotalCal
       }));
       debugger;
       console.log("reformattedArray",reformattedArray);
-      updateTarget.innerHTML = "newvalue";
+      updateTarget.innerHTML = newQuantity+" "+ food.name+" = "+newTotalCal+" cal";
+      pricelist.push(unitSum);
+      this.setState({totalSum: pricelist.reduce((a,b) => a+b,0) });
     }
     else{
       let todaysList = document.getElementById("todaysList");
